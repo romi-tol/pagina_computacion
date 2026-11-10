@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 Sakura Anime</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: #fff5fa;
+  color: #795d80;
+}
+
+header {
+  background: linear-gradient(120deg,#eeb6ce,#cbb9ed);
+  text-align: center;
+  padding: 35px 15px;
+  color: white;
+}
+
+header h1 {
+  font-size: 42px;
+  letter-spacing: 4px;
+}
+
+header p {
+  margin-top: 12px;
+}
+
+nav {
+  background: white;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 3px 12px #e9cede;
+}
+
+nav a {
+  text-decoration: none;
+  color: #aa7ba9;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ec91b9;
+}
+
+.hero {
+  min-height: 440px;
+  background: linear-gradient(135deg,#fbdce9,#e4d7f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.hero-content {
+  background: #ffffffdf;
+  padding: 45px 30px;
+  max-width: 650px;
+  border: 2px solid white;
+}
+
+.hero h2 {
+  font-size: 38px;
+  color: #bb83b0;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.button {
+  background: #d994b9;
+  color: white;
+  text-decoration: none;
+  padding: 13px 25px;
+  border-radius: 30px;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #ae91ce;
+}
+
+section {
+  padding: 60px 8%;
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  color: #b77fae;
+  margin-bottom: 35px;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.search {
+  display: block;
+  width: min(430px,100%);
+  margin: 0 auto 35px;
+  padding: 14px;
+  border: 2px solid #e9c5df;
+  border-radius: 30px;
+  outline: none;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px #e9cede;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+}
+
+.card-image {
+  height: 155px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 65px;
+  background: linear-gradient(135deg,#f7d7e8,#e4d8f7);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card h3 {
+  color: #ae7eaa;
+  margin-bottom: 12px;
+}
+
+.card p {
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.favorite {
+  margin-top: 15px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 20px;
+  background: #fbe5f0;
+  color: #a56d9c;
+  cursor: pointer;
+}
+
+.favorite.active {
+  background: #d9c8ef;
+}
+
+#noResults {
+  display: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.characters {
+  background: #f3eafb;
+}
+
+.character {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  line-height: 1.7;
+  border-radius: 12px;
+}
+
+.character span {
+  font-size: 50px;
+  display: block;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.genre {
+  background: white;
+  padding: 17px 25px;
+  border: 1px solid #efd6e8;
+  border-radius: 25px;
+}
+
+.japan {
+  background: white;
+  text-align: center;
+  line-height: 1.9;
+}
+
+.japan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.japan-item {
+  background: #fff0f6;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.favorites {
+  background: #f3eafb;
+  text-align: center;
+  padding: 30px;
+  line-height: 2;
+  border-radius: 15px;
+}
+
+footer {
+  background: linear-gradient(120deg,#eeb6ce,#cbb9ed);
+  color: white;
+  text-align: center;
+  padding: 35px;
+  line-height: 2;
+}
+
+@media(max-width:600px) {
+  header h1 {font-size: 30px;}
+  .hero h2 {font-size: 29px;}
+  nav {gap: 14px;}
+  section {padding: 40px 5%;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌸 Sakura Anime 🌸</h1>
+  <p>桜 · Un universo de anime y cultura japonesa</p>
+</header>
+
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#animes">Animes</a>
+  <a href="#personajes">Personajes</a>
+  <a href="#generos">Géneros</a>
+  <a href="#japon">Japón</a>
+  <a href="#favoritos">Favoritos</a>
+</nav>
+
+<!-- INICIO -->
+
+<div class="hero" id="inicio">
+  <div class="hero-content">
+    <h2>ようこそ Sakura Anime</h2>
+    <p>
+      Bienvenida a un mundo mágico lleno de
+      aventuras, personajes increíbles y
+      maravillosas historias japonesas.
+      Descubrí tu próximo anime favorito.
+    </p>
+    <a href="#animes" class="button">
+      Explorar animes 🌸
+    </a>
+  </div>
+</div>
+
+<!-- ANIMES -->
+
+<section id="animes">
+
+<h2 class="title">🌸 Biblioteca de anime</h2>
+<p class="subtitle">物語 · Descubrí nuevas historias</p>
+
+<input
+  class="search"
+  id="search"
+  placeholder="🔎 Buscar tu anime favorito..."
+>
+
+<div class="cards" id="animeCards">
+
+<div class="card" data-name="demon slayer kimetsu">
+  <div class="card-image">⚔️🌸</div>
+  <div class="card-content">
+    <h3>Demon Slayer</h3>
+    <p>Una historia de valentía, familia y aventuras.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="jujutsu kaisen">
+  <div class="card-image">👻💜</div>
+  <div class="card-content">
+    <h3>Jujutsu Kaisen</h3>
+    <p>Hechiceros y misteriosas maldiciones.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="naruto">
+  <div class="card-image">🍥🍃</div>
+  <div class="card-content">
+    <h3>Naruto</h3>
+    <p>El camino de un joven ninja hacia sus sueños.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="sailor moon">
+  <div class="card-image">🌙✨</div>
+  <div class="card-content">
+    <h3>Sailor Moon</h3>
+    <p>Magia, amistad y heroínas extraordinarias.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="haikyuu">
+  <div class="card-image">🏐🧡</div>
+  <div class="card-content">
+    <h3>Haikyuu!!</h3>
+    <p>Un equipo que persigue grandes sueños.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="spy x family">
+  <div class="card-image">🕵️🌷</div>
+  <div class="card-content">
+    <h3>Spy x Family</h3>
+    <p>Una familia llena de secretos y aventuras.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="fruits basket">
+  <div class="card-image">🍓🐈</div>
+  <div class="card-content">
+    <h3>Fruits Basket</h3>
+    <p>Una historia sobre amistad y emociones.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="my hero academia">
+  <div class="card-image">⭐💥</div>
+  <div class="card-content">
+    <h3>My Hero Academia</h3>
+    <p>Jóvenes que quieren convertirse en héroes.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="one piece">
+  <div class="card-image">🏴‍☠️🌊</div>
+  <div class="card-content">
+    <h3>One Piece</h3>
+    <p>Una aventura por los mares en busca de un tesoro.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+<div class="card" data-name="death note">
+  <div class="card-image">📓🖤</div>
+  <div class="card-content">
+    <h3>Death Note</h3>
+    <p>Un misterioso cuaderno cambia el destino.</p>
+    <button class="favorite">♡ Favorito</button>
+  </div>
+</div>
+
+</div>
+
+<p id="noResults">No encontramos ese anime 🌸</p>
+
+</section>
+
+<!-- PERSONAJES -->
+
+<section class="characters" id="personajes">
+
+<h2 class="title">🎎 Personajes destacados</h2>
+<p class="subtitle">キャラクター · Personajes inolvidables</p>
+
+<div class="cards">
+
+<div class="character">
+  <span>🌸</span>
+  <h3>Tanjiro Kamado</h3>
+  <p>Demon Slayer · Un joven valiente y decidido.</p>
+</div>
+
+<div class="character">
+  <span>🎀</span>
+  <h3>Nezuko Kamado</h3>
+  <p>Demon Slayer · Un personaje lleno de ternura.</p>
+</div>
+
+<div class="character">
+  <span>⚡</span>
+  <h3>Zenitsu Agatsuma</h3>
+  <p>Demon Slayer · Un cazador de demonios.</p>
+</div>
+
+<div class="character">
+  <span>🍥</span>
+  <h3>Naruto Uzumaki</h3>
+  <p>Naruto · Un ninja que nunca abandona sus sueños.</p>
+</div>
+
+<div class="character">
+  <span>💜</span>
+  <h3>Gojo Satoru</h3>
+  <p>Jujutsu Kaisen · Un poderoso hechicero.</p>
+</div>
+
+<div class="character">
+  <span>🏐</span>
+  <h3>Hinata Shoyo</h3>
+  <p>Haikyuu!! · Un apasionado jugador de voleibol.</p>
+</div>
+
+</div>
+</section>
+
+<!-- GENEROS -->
+
+<section id="generos">
+
+<h2 class="title">🎐 Géneros de anime</h2>
+
+<div class="genres">
+  <div class="genre">⚔️ Shonen</div>
+  <div class="genre">🌷 Shojo</div>
+  <div class="genre">💕 Romance</div>
+  <div class="genre">👻 Sobrenatural</div>
+  <div class="genre">🏯 Fantasía</div>
+  <div class="genre">😂 Comedia</div>
+  <div class="genre">🌸 Slice of Life</div>
+  <div class="genre">🔍 Misterio</div>
+  <div class="genre">🏐 Deportes</div>
+  <div class="genre">🚀 Ciencia ficción</div>
+  <div class="genre">🎭 Drama</div>
+  <div class="genre">🧙 Magia</div>
+</div>
+
+</section>
+
+<!-- JAPON -->
+
+<section class="japan" id="japon">
+
+<h2 class="title">⛩️ Cultura japonesa</h2>
+
+<p>
+  Japón es un país lleno de tradiciones,
+  paisajes hermosos, gastronomía y cultura.
+</p>
+
+<div class="japan-grid">
+
+<div class="japan-item">
+  <h3>🌸 Sakura</h3>
+  <p>Las famosas flores de cerezo.</p>
+</div>
+
+<div class="japan-item">
+  <h3>🍡 Mochi</h3>
+  <p>Un dulce tradicional japonés.</p>
+</div>
+
+<div class="japan-item">
+  <h3>🏯 Templos</h3>
+  <p>Arquitectura e historia japonesa.</p>
+</div>
+
+<div class="japan-item">
+  <h3>🎎 Festivales</h3>
+  <p>Celebraciones llenas de color y tradición.</p>
+</div>
+
+<div class="japan-item">
+  <h3>🍵 Té japonés</h3>
+  <p>Una tradición cultural muy especial.</p>
+</div>
+
+<div class="japan-item">
+  <h3>🌸 Kimono</h3>
+  <p>Una vestimenta tradicional japonesa.</p>
+</div>
+
+</div>
+</section>
+
+<!-- FAVORITOS -->
+
+<section id="favoritos">
+
+<h2 class="title">⭐ Mi colección personal</h2>
+
+<div class="favorites">
+  <h3>♡ Mis animes favoritos ♡</h3>
+  <ul id="favoritesList" style="list-style:none">
+    <li>Todavía no agregaste favoritos 🌸</li>
+  </ul>
+</div>
+
+</section>
+
+<footer>
+  <h2>🌸 Sakura Anime 🌸</h2>
+  <p>桜 · Un universo de historias y fantasía.</p>
+  <p>Creado con amor ♡</p>
+  <p>© 2026 Sakura Anime</p>
+</footer>
+
+<script>
+
+// BUSCADOR
+
+const search = document.getElementById("search");
+const cards = document.querySelectorAll("#animeCards .card");
+const noResults = document.getElementById("noResults");
+
+search.addEventListener("input", () => {
+  const value = search.value.toLowerCase();
+  let count = 0;
+
+  cards.forEach(card => {
+    const match = card.dataset.name.includes(value);
+
+    card.style.display = match ? "block" : "none";
+
+    if (match) count++;
+  });
+
+  noResults.style.display =
+    count === 0 ? "block" : "none";
+});
+
+// FAVORITOS
+
+const favorites = new Set();
+const list = document.getElementById("favoritesList");
+
+document.querySelectorAll(".favorite").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const card = button.closest(".card");
+    const name = card.querySelector("h3").textContent;
+
+    if (favorites.has(name)) {
+      favorites.delete(name);
+      button.textContent = "♡ Favorito";
+      button.classList.remove("active");
+    } else {
+      favorites.add(name);
+      button.textContent = "♥ Guardado";
+      button.classList.add("active");
+    }
+
+    updateFavorites();
+  });
+
+});
+
+function updateFavorites() {
+
+  list.innerHTML = "";
+
+  if (favorites.size === 0) {
+    list.innerHTML =
+      "<li>Todavía no agregaste favoritos 🌸</li>";
+    return;
+  }
+
+  favorites.forEach(name => {
+    const li = document.createElement("li");
+    li.textContent = "♡ " + name;
+    list.appendChild(li);
+  });
+
+}
+
+</script>
+
+</body>
+</html>
